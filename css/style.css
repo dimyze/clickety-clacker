@@ -1,0 +1,131 @@
+/* CODE WRITTEN BY VIRAJ MATHUR */
+
+:root {
+  --color-body-background: #121212;
+  --color-text-area: #272727;
+  --color-text-color: #eee;
+  --color-text-placeholder: #bcbcbc;
+  --color-typing-area: #3e3e3e;
+  --color-button-redo: #592222;
+  --color-button-redo-hover: #842d2d;
+  --color-change-success: #00ff37;
+  --color-change-failure: #f96262;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-size: 2rem;
+  font-weight: 400;
+  background-color: var(--color-body-background);
+  color: var(--color-text-color);
+}
+
+.main__container {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  gap: 6rem;
+  height: 100vh;
+}
+
+.main__area {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  font-size: 4.8rem;
+  justify-self: center;
+}
+
+.text__area {
+  background-color: var(--color-text-area);
+  border-radius: 2rem;
+  max-width: 90rem;
+}
+
+.text__generate {
+  padding: 3.2rem 4rem;
+  line-height: 1.8;
+}
+
+.typing__area {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  gap: 1.5rem;
+}
+
+.type {
+  align-items: center;
+  background-color: var(--color-typing-area);
+  border-radius: 2rem;
+  overflow: hidden;
+  padding: 2.4rem 4rem;
+}
+
+.input__text {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  width: 100%;
+}
+
+.input__text__placeholder::placeholder {
+  color: var(--color-text-placeholder);
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.input__text__placeholder__after::placeholder {
+  color: var(--color-typing-area);
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.redo {
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+.btn__redo {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-button-redo);
+  border: none;
+  color: var(--color-text-color);
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.btn__redo:hover {
+  background-color: var(--color-button-redo-hover);
+}
+
+.color__change__success {
+  color: var(--color-change-success);
+}
+
+.color__change__failure {
+  color: var(--color-change-failure);
+}
