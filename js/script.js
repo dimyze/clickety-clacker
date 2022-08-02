@@ -56,9 +56,9 @@ const displayWords = function () {
         .querySelector(`.word${i + 1}`)
         .insertAdjacentHTML(
           "beforeend",
-          `<span class = "word${i + 1}letter${j + 1}">${
-            wordsToDisplay[i][j]
-          }</span>`
+          `<span class = "word${i + 1}letter${
+            j + 1
+          }" style = "transition: all 0.2s">${wordsToDisplay[i][j]}</span>`
         );
     }
   }
@@ -80,25 +80,39 @@ const letterColorChanger = function (e) {
     ).toUpperCase()}`
   ) {
     currentLetter.classList.remove("color__change__failure");
-    currentLetter.classList.add("color__change__success");
+    currentLetter.classList.add("color__change__success", "text__active");
   } else {
     currentLetter.classList.remove("color__change__success");
-    currentLetter.classList.add("color__change__failure");
+    currentLetter.classList.add("color__change__failure", "text__active");
   }
 };
 
+const removeLetterStyling = function () {
+  let currentLetter = document.querySelector(
+    `.word${currentWord}letter${position + 1}`
+  );
+  currentLetter.classList.remove(
+    "color__change__failure",
+    "color__change__success",
+    "text__active"
+  );
+};
+
 const loadContent = function () {
+  position = -1;
   inputText.value = "";
   inputTextID.focus();
   textGenerator(words);
   displayWords();
+  setActiveWord();
 };
 
 /////////////////////
 // Event Listeners //
 /////////////////////
 
-inputText.addEventListener("keyup", function (e) {
+inputText.addEventListener("keydown", function (e) {
+  console.log(position);
   if (e.code === "Space") {
     position = -1;
     e.preventDefault();
@@ -107,13 +121,13 @@ inputText.addEventListener("keyup", function (e) {
     inputText.classList.add("input__text__placeholder__after");
     ++currentWord;
     setActiveWord();
-  } else {
-    if (e.code !== "Backspace") {
-      position++;
-      letterColorChanger(e);
-    } else if (e.code === "Backspace" && inputText.value !== "") position--;
-    else position = -1;
-  }
+  } else if (e.code !== "Backspace") {
+    ++position;
+    letterColorChanger(e);
+  } else if (e.code === "Backspace" && inputText.value !== "") {
+    removeLetterStyling();
+    position--;
+  } else position = -1;
 });
 
 document.body.addEventListener("click", function () {

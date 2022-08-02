@@ -1,15 +1,18 @@
 /* CODE WRITTEN BY VIRAJ MATHUR */
 
 :root {
-  --color-body-background: #121212;
-  --color-text-area: #272727;
-  --color-text-color: #eee;
-  --color-text-placeholder: #bcbcbc;
-  --color-typing-area: #3e3e3e;
-  --color-button-redo: #592222;
-  --color-button-redo-hover: #842d2d;
+  --color-body-background: #000;
+  --color-text-area: #141414;
+  --color-text-color: #aaa;
+  --color-text-active: #ddd;
+  --color-text-placeholder: #555;
+  --color-typing-area: #282828;
+  --color-button-text: #777;
+  --color-button-redo: #3f1717;
+  --color-button-redo-hover: #4e1818;
   --color-change-success: #00ff37;
   --color-change-failure: #f96262;
+  --border-radius: 0.5rem;
 }
 
 * {
@@ -27,9 +30,10 @@ body {
   font-family: "Fira Code";
   font-style: normal;
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 300;
   background-color: var(--color-body-background);
   color: var(--color-text-color);
+  letter-spacing: 1px;
 }
 
 .main__container {
@@ -40,40 +44,45 @@ body {
   height: 100vh;
 }
 
+.title {
+  font-size: 3.2rem;
+  justify-self: center;
+  font-weight: 500;
+  color: var(--color-text-active);
+}
+
 .main__area {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.title {
-  font-size: 4.8rem;
-  justify-self: center;
-}
-
 .text__area {
   background-color: var(--color-text-area);
-  border-radius: 2rem;
-  max-width: 90rem;
+  border-radius: var(--border-radius);
+  max-width: 80rem;
+  padding: 2.8rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 }
 
 .text__generate {
-  padding: 3.2rem 4rem;
-  line-height: 1.8;
+  line-height: 2;
 }
 
 .typing__area {
   display: grid;
   grid-template-columns: 5fr 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .type {
   align-items: center;
   background-color: var(--color-typing-area);
-  border-radius: 2rem;
+  border-radius: var(--border-radius);
   overflow: hidden;
-  padding: 2.4rem 4rem;
+  padding: 2rem 4rem;
 }
 
 .input__text {
@@ -101,7 +110,7 @@ body {
 .redo {
   width: 100%;
   height: 100%;
-  border-radius: 2rem;
+  border-radius: var(--border-radius);
   overflow: hidden;
 }
 
@@ -110,7 +119,7 @@ body {
   height: 100%;
   background-color: var(--color-button-redo);
   border: none;
-  color: var(--color-text-color);
+  color: var(--color-button-text);
   font-family: inherit;
   font-size: inherit;
   cursor: pointer;
@@ -120,6 +129,7 @@ body {
 
 .btn__redo:hover {
   background-color: var(--color-button-redo-hover);
+  color: var(--color-text-color);
 }
 
 .color__change__success {
@@ -128,4 +138,8 @@ body {
 
 .color__change__failure {
   color: var(--color-change-failure);
+}
+
+.text__active {
+  font-weight: 500;
 }
