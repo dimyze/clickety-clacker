@@ -3,14 +3,14 @@
 :root {
   --color-body-background: #000;
   --color-text-area: #0c0c0c;
-  --color-text-color: #aaa;
+  --color-text-color: #999;
   --color-text-active: #fff;
   --color-text-active-background: #3e3e3e;
   --color-text-placeholder: #555;
   --color-typing-area: #282828;
   --color-button-text: #aaa;
-  --color-button-redo: #631717;
-  --color-button-redo-hover: #8a2424;
+  --color-button-redo: #631720;
+  --color-button-redo-hover: #8e1e29;
   --color-change-success: #49ff71;
   --color-change-failure: #ff4d4d;
   --border-radius: 1.5rem;
@@ -30,7 +30,7 @@ html {
 body {
   font-family: "Fira Code";
   font-style: normal;
-  font-size: 1.9rem;
+  font-size: 2rem;
   font-weight: 400;
   background-color: var(--color-body-background);
   color: var(--color-text-color);
@@ -58,24 +58,42 @@ body {
 }
 
 .text__area {
-  background-color: var(--color-text-area);
+  background-color: var(--color-typing-area);
   border-radius: var(--border-radius);
-  max-width: 90rem;
-  padding: 2.8rem 4rem;
+  width: 85rem;
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  overflow: hidden;
   z-index: -2;
 }
 
-.text__generate {
+#text__generate {
+  padding: 2.8rem 4rem;
+  background-color: var(--color-text-area);
   line-height: 1.9;
+  border-radius: inherit;
+}
+
+.animation__slideout {
+  animation: slideout 1s forwards;
+}
+
+.animation__slidein {
+  animation: slidein 1s forwards;
 }
 
 .typing__area {
   display: grid;
   grid-template-columns: 7fr 1fr;
   gap: 1.2rem;
+  transition: all 0.2s;
+}
+
+.typing__area_complete {
+  display: grid;
+  grid-template-columns: 0 1fr;
+  transition: all 0.2s;
 }
 
 .type {
@@ -89,7 +107,7 @@ body {
   border-radius: var(--border-radius);
   background-color: inherit;
   border: none;
-  color: inherit;
+  color: var(--color-text-active);
   font-size: inherit;
   font-family: inherit;
   width: 100%;
@@ -132,11 +150,12 @@ body {
   cursor: pointer;
   transition: all 0.2s;
   outline: none;
+  font-weight: 500;
 }
 
 .btn__redo:hover {
   background-color: var(--color-button-redo-hover);
-  color: var(--color-text-color);
+  color: var(--color-text-active);
 }
 
 .color__change__success {
@@ -148,10 +167,76 @@ body {
 }
 
 .text__active {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .active__word {
-  transition: all 0.2s;
   color: var(--color-text-active);
+}
+
+.text__area-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.flex__col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  line-height: 1;
+}
+
+.result__heading {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  font-weight: 300;
+  color: var(--color-text-color);
+}
+
+.reload__icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  color: var(--color-button-text);
+}
+
+.result__value {
+  font-size: 8.4rem;
+  font-weight: 400;
+  color: var(--color-text-active);
+}
+
+@keyframes slideout {
+  from {
+    transform: translateY(0%);
+  }
+
+  50% {
+    transform: scale(0.97);
+  }
+
+  to {
+    transform: translateY(-110%);
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translateY(110%);
+  }
+
+  50% {
+    transform: scale(0.97);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
 }

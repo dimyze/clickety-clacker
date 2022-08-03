@@ -20,7 +20,7 @@
       <h1 class="title">Clickety Clacker</h1>
       <div class="main__area">
         <section class="text__area">
-          <div class="text__generate">
+          <div id="text__generate">
             <p class="text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus,
               eum illum deleniti dolore tenetur nulla explicabo reprehenderit
@@ -34,15 +34,25 @@
             <input
               id="input_text"
               class="input__text input__text__placeholder"
-              placeholder="Start typing here.."
+              placeholder="Start typing here..."
               autocomplete="off"
             />
           </div>
           <div class="redo">
-            <button class="btn__redo">Redo</button>
+            <button class="btn__redo">
+              <ion-icon name="refresh-outline" class="reload__icon"></ion-icon>
+            </button>
           </div>
         </div>
       </div>
     </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
