@@ -2,17 +2,18 @@
 
 :root {
   --color-body-background: #000;
-  --color-text-area: #141414;
+  --color-text-area: #0c0c0c;
   --color-text-color: #aaa;
-  --color-text-active: #ddd;
+  --color-text-active: #fff;
+  --color-text-active-background: #3e3e3e;
   --color-text-placeholder: #555;
   --color-typing-area: #282828;
-  --color-button-text: #777;
-  --color-button-redo: #3f1717;
-  --color-button-redo-hover: #4e1818;
-  --color-change-success: #00ff37;
-  --color-change-failure: #f96262;
-  --border-radius: 0.5rem;
+  --color-button-text: #aaa;
+  --color-button-redo: #631717;
+  --color-button-redo-hover: #8a2424;
+  --color-change-success: #49ff71;
+  --color-change-failure: #ff4d4d;
+  --border-radius: 1.5rem;
 }
 
 * {
@@ -29,11 +30,10 @@ html {
 body {
   font-family: "Fira Code";
   font-style: normal;
-  font-size: 2rem;
-  font-weight: 300;
+  font-size: 1.9rem;
+  font-weight: 400;
   background-color: var(--color-body-background);
   color: var(--color-text-color);
-  letter-spacing: 1px;
 }
 
 .main__container {
@@ -54,27 +54,28 @@ body {
 .main__area {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.2rem;
 }
 
 .text__area {
   background-color: var(--color-text-area);
   border-radius: var(--border-radius);
-  max-width: 80rem;
+  max-width: 90rem;
   padding: 2.8rem 4rem;
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  z-index: -2;
 }
 
 .text__generate {
-  line-height: 2;
+  line-height: 1.9;
 }
 
 .typing__area {
   display: grid;
-  grid-template-columns: 5fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 7fr 1fr;
+  gap: 1.2rem;
 }
 
 .type {
@@ -82,17 +83,23 @@ body {
   background-color: var(--color-typing-area);
   border-radius: var(--border-radius);
   overflow: hidden;
-  padding: 2rem 4rem;
 }
 
 .input__text {
+  border-radius: var(--border-radius);
   background-color: inherit;
   border: none;
-  outline: none;
   color: inherit;
   font-size: inherit;
   font-family: inherit;
   width: 100%;
+  transition: all 0.2s;
+  padding: 2rem 4rem;
+}
+
+.input__text:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1.5px var(--color-text-color);
 }
 
 .input__text__placeholder::placeholder {
@@ -142,4 +149,9 @@ body {
 
 .text__active {
   font-weight: 500;
+}
+
+.active__word {
+  transition: all 0.2s;
+  color: var(--color-text-active);
 }

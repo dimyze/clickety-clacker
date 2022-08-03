@@ -21,7 +21,7 @@ const redoBtn = document.querySelector(".btn__redo");
 
 // prettier-ignore
 const words = [
-  "abandon", "action", "actor", "additional", "again", "bottle", "bullet", "campus", "careful", "class", "clean", "computer", "custom", "divide", "donate", "dance", "ear", "either", "floor", "flower", "fight", "feel", "force", "grow", "good", "ghost", "head", "hover", "height", "high", "ignore", "imagine", "indeed", "in", "join", "just", "joy", "keep", "knock", "king", "kick", "low", "last", "left", "light", "location", "loud", "man", "mass", "medical", "manage", "mountain", "more", "much", "new", "night", "nothing", "need", "north", "no", "obtain", "ocean", "office", "out", "often", "orange", "past", "power", "parent", "paint", "phase", "plot", "press", "prayer", "prison", "professional", "queen", "quintal", "quote", "qualify", "right", "rest", "raw", "reflect", "run", "rough", "son", "service", "scholar", "solar", "sack", "soft", "silver", "smoke", "turn", "teach", "today", "trip", "tool", "take", "trick", "understand", "uniform", "university", "urban", "use", "victim", "violate", "vital", "visitor", "west", "wind", "wire", "wonder", "wrong", "yet", "youth", "yesterday", "year", "yes", "zone" 
+  "abandon", "action", "actor", "about", "again", "bottle", "both", "chair", "careful", "class", "clean", "computer", "camp", "divide", "donate", "dance", "ear", "enter", "floor", "for", "fight", "feel", "force", "grow", "good", "ghost", "head", "house", "height", "high", "increase", "imagine", "invite", "in", "join", "just", "joy", "keep", "knock", "king", "kick", "low", "last", "left", "light", "location", "loud", "man", "mass", "medical", "manage", "mountain", "more", "much", "new", "night", "nothing", "need", "north", "no", "obtain", "ocean", "office", "out", "often", "orange", "past", "power", "parent", "paint", "phase", "plot", "press", "prayer", "prison", "people", "queen", "quick", "quote", "remain", "right", "rest", "raw", "reflect", "run", "rough", "son", "service", "scholar", "solar", "sack", "soft", "silver", "smoke", "turn", "teach", "today", "trip", "tool", "take", "trick", "understand", "uniform", "union", "urban", "use", "victim", "violate", "vital", "visitor", "west", "wind", "wire", "wood", "work", "yet", "youth", "yesterday", "year", "yes", "zone" 
 ];
 
 ///////////////
@@ -37,9 +37,14 @@ let activeWord = document.querySelector(`.word${currentWord}`);
 
 const textGenerator = function (words) {
   wordsToDisplay = [];
-  for (let i = 0; i < 50; i++) {
-    let randomIndex = Math.trunc(Math.random() * 121);
-    wordsToDisplay.push(words[randomIndex]);
+  let randomIndex = Math.trunc(Math.random() * 121);
+  wordsToDisplay.push(words[randomIndex]);
+  for (let i = 1; i < 50; i++) {
+    let randomIndexCurr = Math.trunc(Math.random() * 121);
+    while (randomIndexCurr === randomIndex)
+      randomIndexCurr = Math.trunc(Math.random() * 121);
+    randomIndex = randomIndexCurr;
+    wordsToDisplay.push(words[randomIndexCurr]);
   }
 };
 
@@ -49,7 +54,7 @@ const displayWords = function () {
   for (let i = 0; i < 50; i++) {
     text.insertAdjacentHTML(
       "beforeend",
-      `<span class = "word${i + 1}" style="display: inline-block"></span> `
+      `<span class = "word${i + 1}""></span> `
     );
     for (let j = 0; j < wordsToDisplay[i].length; j++) {
       document
@@ -58,7 +63,7 @@ const displayWords = function () {
           "beforeend",
           `<span class = "word${i + 1}letter${
             j + 1
-          }" style = "transition: all 0.2s">${wordsToDisplay[i][j]}</span>`
+          }" style = "transition: all 0s">${wordsToDisplay[i][j]}</span>`
         );
     }
   }
@@ -105,6 +110,7 @@ const loadContent = function () {
   textGenerator(words);
   displayWords();
   setActiveWord();
+  activeWord.classList.add("active__word");
 };
 
 /////////////////////
@@ -119,8 +125,10 @@ inputText.addEventListener("keydown", function (e) {
     inputText.value = "";
     inputText.classList.remove("input__text__placeholder");
     inputText.classList.add("input__text__placeholder__after");
+    activeWord.classList.remove("active__word");
     ++currentWord;
     setActiveWord();
+    activeWord.classList.add("active__word");
   } else if (e.code !== "Backspace") {
     ++position;
     letterColorChanger(e);
