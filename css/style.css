@@ -13,15 +13,11 @@
   --color-text-placeholder: #555;
   --color-text-result: #fff;
   --color-typing-area: #282828;
-  --color-button-redo-text: #e58e97;
-  --color-button-themes-text: #3bd256;
-  --color-button-redo-text-hover: #ffb9c0;
-  --color-button-themes-text-hover: #bdffc9;
-  --color-button-redo: #33171a;
-  --color-button-redo-hover: #722029;
-  --color-button-themes: #122d18;
-  --color-button-themes-hover: #176124;
-  --color-change-success: #31f755;
+  --color-button-redo-text: #a6d7f3;
+  --color-button-redo-text-hover: #ddf3ff;
+  --color-button-redo: #083752;
+  --color-button-redo-hover: #1c6e9e;
+  --color-change-success: #5dd8ff;
   --color-change-failure: #ff5858;
   --color-change-failure-light: #ff5858;
   --border-radius: 1.5rem;
@@ -108,7 +104,8 @@ body {
 
 .theme__name0,
 .theme__name1,
-.theme__name2 {
+.theme__name2,
+.theme__name3 {
   position: absolute;
   bottom: 7.4rem;
   font-size: 5.4rem;
@@ -129,6 +126,11 @@ body {
 
 .theme__name2 {
   left: 250%;
+  transform: translateX(-50%);
+}
+
+.theme__name3 {
+  left: 350%;
   transform: translateX(-50%);
 }
 
@@ -267,13 +269,13 @@ body {
 .btn__redo {
   background-color: var(--color-button-redo);
   color: var(--color-button-redo-text);
-  transition: all var(--color-change-transition-time);
+  transition: background-color var(--color-change-transition-time);
 }
 
 .btn__redo:hover {
   background-color: var(--color-button-redo-hover);
   color: var(--color-button-redo-text-hover);
-  transition: all var(--color-change-transition-time);
+  transition: background-color var(--color-change-transition-time);
 }
 
 .rotate {
@@ -337,9 +339,9 @@ body {
 .reload__icon,
 .themes__icon {
   --reload-amount: 360deg;
-  height: 2rem;
-  width: 2rem;
-  transition: all 0.3s;
+  height: 2.4rem;
+  width: 2.4rem;
+  transition: all 1s;
 }
 
 .result__value {

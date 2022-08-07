@@ -30,7 +30,7 @@ let slideTransitionTimeFast = 500;
 // let extraLetters = 0;
 let reloadAmount = 360;
 let themeSelection = false;
-let numOfThemes = 3;
+let numOfThemes = 4;
 let currentTheme = 0;
 let mainContainerClick = false;
 
@@ -315,7 +315,7 @@ const themeColorChanger = function (
 
 const changeTheme = function (currentTheme) {
   switch (currentTheme) {
-    case 0:
+    case 0: // default
       themeColorChanger(
         "000", // main container
         "111", // textGenerate
@@ -327,16 +327,16 @@ const changeTheme = function (currentTheme) {
         "fff", // textTyping
         "555", // textPlaceholder
         "fff", // textResult
-        "e58e97", // textBtnRedo
-        "ffb9c0", // textBtnRedoHover
-        "31f755", // textSuccess
-        "33171a", // btnRedo
-        "722029", // btnRedoHover
+        "a6d7f3", // textBtnRedo
+        "ddf3ff", // textBtnRedoHover
+        "5dd8ff", // textSuccess
+        "083752", // btnRedo
+        "1c6e9e", // btnRedoHover
         "282828" // typingArea
       );
       break;
 
-    case 1:
+    case 1: // chocolate
       themeColorChanger(
         "180808", // main container
         "2C1D1D", // textGenerate
@@ -357,24 +357,45 @@ const changeTheme = function (currentTheme) {
       );
       break;
 
-    case 2:
+    case 2: // synthwave
       themeColorChanger(
-        "1C081B", // main container
-        "381B37", // textGenerate
+        "2D032B", // main container
+        "560853", // textGenerate
         "8C599E", // containerArea
         "C78EE2", // outline
-        "E4A7DB", // text
-        "E1AAF4", // textTitle
-        "FFF", // textActive
-        "B4E9FA", // textTyping
-        "C78EE2", // textPlaceholder
-        "E1AAF4", // textResult
-        "B4E9FA", // textBtnRedo
-        "DAF6FF", // textBtnRedoHover
-        "DBFC12", // textSuccess
-        "157A9A", // btnRedo
+        "FFBAF4", // text
+        "61ECFF", // textTitle
+        "CCFF00", // textActive
+        "000", // textTyping
+        "1C191D", // textPlaceholder
+        "00FFFF", // textResult
+        "DDF7FF", // textBtnRedo
+        "DDF7FF", // textBtnRedoHover
+        "00FFFF", // textSuccess
+        "2C93B4", // btnRedo
         "279CC1", // btnRedoHover
         "8C599E" // typingArea
+      );
+      break;
+
+    case 3: // matrix
+      themeColorChanger(
+        "000", // main container
+        "121212", // textGenerate
+        "2C2C2C", // containerArea
+        "676767", // outline
+        "44A84E", // text
+        "A9FFA7", // textTitle
+        "A9FFA7", // textActive
+        "00ff00", // textTyping
+        "676767", // textPlaceholder
+        "00ff00", // textResult
+        "A8F3A2", // textBtnRedo
+        "D6FFD2", // textBtnRedoHover
+        "00ff00", // textSuccess
+        "0F270D", // btnRedo
+        "2C8624", // btnRedoHover
+        "2C2C2C" // typingArea
       );
       break;
   }
