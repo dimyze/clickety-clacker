@@ -25,7 +25,7 @@
   --color-change-failure: #ff5858;
   --color-change-failure-light: #ff5858;
   --border-radius: 1.5rem;
-  --color-change-transition-time: 0.5s;
+  --color-change-transition-time: 0.4s;
 }
 
 * {
@@ -38,6 +38,7 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
   position: relative;
+  overflow: hidden;
 }
 
 body {
@@ -64,9 +65,35 @@ body {
   gap: 4rem;
   height: 100vh;
   width: 100vw;
-  transition: all var(--color-change-transition-time);
+  transition: background-color var(--color-change-transition-time);
+  transition: box-shadow 0.3s;
   background-color: var(--color-body-background);
   position: relative;
+}
+
+.arrow__icon {
+  cursor: pointer;
+  height: 6.4rem;
+  width: 6.4rem;
+  color: var(--color-body-background);
+}
+
+.left__arrow,
+.right__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background-color: inherit;
+  border-radius: 100rem;
+}
+
+.left__arrow {
+  left: 5%;
+}
+
+.right__arrow {
+  right: 5%;
 }
 
 .theme__selection__text {
@@ -80,7 +107,8 @@ body {
 }
 
 .theme__name0,
-.theme__name1 {
+.theme__name1,
+.theme__name2 {
   position: absolute;
   bottom: 7.4rem;
   font-size: 5.4rem;
@@ -96,6 +124,11 @@ body {
 
 .theme__name1 {
   left: 150%;
+  transform: translateX(-50%);
+}
+
+.theme__name2 {
+  left: 250%;
   transform: translateX(-50%);
 }
 
@@ -270,7 +303,7 @@ body {
 
 .active__word {
   color: var(--color-text-active);
-  transition: color var(--color-change-transition-time);
+  /* transition: color var(--color-change-transition-time); */
 }
 
 .text__area-grid {

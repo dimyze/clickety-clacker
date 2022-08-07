@@ -30,8 +30,9 @@ let slideTransitionTimeFast = 500;
 // let extraLetters = 0;
 let reloadAmount = 360;
 let themeSelection = false;
-let numOfThemes = 2;
+let numOfThemes = 3;
 let currentTheme = 0;
+let mainContainerClick = false;
 
 ////////////////////
 ////////////////////
@@ -50,7 +51,8 @@ const reloadIcon = document.querySelector(".reload__icon");
 let themeButton = document.querySelector(".theme__button");
 let mainContainer = document.querySelector(".main__container");
 let themeNames = Array.from(document.querySelectorAll(".theme__name"));
-console.log(themeNames);
+const leftArrow = document.querySelector(".left__arrow");
+const rightArrow = document.querySelector(".right__arrow");
 
 // prettier-ignore
 // const words = [
@@ -340,22 +342,74 @@ const changeTheme = function (currentTheme) {
         "2C1D1D", // textGenerate
         "4F3737", // containerArea
         "C39982", // outline
-        "9E7E6C", // text
+        "D3A78E", // text
         "CCB3A5", // textTitle
-        "FF9D88", // textActive
+        "FFB178", // textActive
         "C39982", // textTyping
         "C29F9F", // textPlaceholder
         "CCB3A5", // textResult
         "CF6464", // textBtnRedo
         "FD8383", // textBtnRedoHover
-        "DFFC6B", // textSuccess
+        "FFE600", // textSuccess
         "341111", // btnRedo
         "672222", // btnRedoHover
         "4F3737" // typingArea
       );
       break;
+
+    case 2:
+      themeColorChanger(
+        "1C081B", // main container
+        "381B37", // textGenerate
+        "8C599E", // containerArea
+        "C78EE2", // outline
+        "E4A7DB", // text
+        "E1AAF4", // textTitle
+        "FFF", // textActive
+        "B4E9FA", // textTyping
+        "C78EE2", // textPlaceholder
+        "E1AAF4", // textResult
+        "B4E9FA", // textBtnRedo
+        "DAF6FF", // textBtnRedoHover
+        "DBFC12", // textSuccess
+        "157A9A", // btnRedo
+        "279CC1", // btnRedoHover
+        "8C599E" // typingArea
+      );
+      break;
   }
 };
+
+const changeThemeRight = function () {
+  console.log(`Current theme before switching: ${currentTheme}`);
+  if (currentTheme < numOfThemes - 1) currentTheme++;
+  else {
+    currentTheme = 0;
+    translateMultiplier = 0;
+  }
+  console.log(`Current theme after switching: ${currentTheme}`);
+  console.log(translateMultiplier, "right");
+  themeNames.forEach(function (el) {
+    el.style.transform = `translateX(calc(-${translateMultiplier}vw - 50%))`;
+  });
+  changeTheme(currentTheme);
+};
+
+const changeThemeLeft = function () {
+  translateMultiplier -= 200;
+  if (currentTheme > 0) currentTheme--;
+  else {
+    currentTheme = numOfThemes - 1;
+    translateMultiplier = 100 * (numOfThemes - 1);
+  }
+  console.log(translateMultiplier, "left");
+  themeNames.forEach(function (el) {
+    el.style.transform = `translateX(calc(-${translateMultiplier}vw - 50%))`;
+  });
+  changeTheme(currentTheme);
+};
+
+// const selectTheme = function () {};
 
 /////////////////////
 /////////////////////
@@ -475,11 +529,14 @@ themeButton.addEventListener("click", function () {
   toggleAnimation(mainContainer, "animation__shrink", true);
   inputTextID.focus();
   inputTextID.disabled = true;
+  setTimeout(() => {
+    mainContainerClick = true;
+  }, 400);
 });
 
 window.addEventListener("keydown", function (e) {
   if (themeSelection) {
-    if (e.code === "Enter") {
+    if (e.code === "Enter" || e.code === "Space") {
       inputTextID.disabled = false;
       inputText.focus();
       console.log(`ENTER`, themeSelection);
@@ -489,6 +546,7 @@ window.addEventListener("keydown", function (e) {
       toggleAnimation(mainContainer, "animation__expand", false);
       toggleAnimation(mainContainer, "animation__expand", true);
       console.log(`INPUTTEXT`, inputTextID.enabled);
+      mainContainerClick = false;
       themeSelection = false;
     }
     console.log(e.code);
@@ -496,30 +554,68 @@ window.addEventListener("keydown", function (e) {
     translateMultiplier = 100 * (currentTheme + 1);
     // let translateMultiplierLeft = translateMultiplier;
     if (e.code === "ArrowRight") {
-      if (currentTheme < numOfThemes - 1) currentTheme++;
-      else {
-        currentTheme = 0;
-        translateMultiplier = 0;
-      }
-      themeNames.forEach(function (el) {
-        el.style.transform = `translateX(calc(-${translateMultiplier}vw - 50%))`;
-        changeTheme(currentTheme);
-      });
+      // if (currentTheme < numOfThemes - 1) currentTheme++;
+      // else {
+      //   currentTheme = 0;
+      //   translateMultiplier = 0;
+      // }
+      // themeNames.forEach(function (el) {
+      //   el.style.transform = `translateX(calc(-${translateMultiplier}vw - 50%))`;
+      //   changeTheme(currentTheme);
+      // });
+      changeThemeRight();
     } else if (e.code === "ArrowLeft") {
-      translateMultiplier -= 200;
-      if (currentTheme > 0) currentTheme--;
-      else {
-        currentTheme = numOfThemes - 1;
-        translateMultiplier = -100 * (numOfThemes - 1);
-      }
-      themeNames.forEach(function (el) {
-        el.style.transform = `translateX(calc(${translateMultiplier}vw - 50%))`;
-        changeTheme(currentTheme);
-      });
+      // translateMultiplier -= 200;
+      // if (currentTheme > 0) currentTheme--;
+      // else {
+      //   currentTheme = numOfThemes - 1;
+      //   translateMultiplier = -100 * (numOfThemes - 1);
+      // }
+      // themeNames.forEach(function (el) {
+      //   el.style.transform = `translateX(calc(${translateMultiplier}vw - 50%))`;
+      //   changeTheme(currentTheme);
+      // });
+      changeThemeLeft();
     }
     themeButton.textContent = `Theme: ${
       document.querySelector(`.theme__name${currentTheme}`).textContent
     }`;
+  }
+});
+
+leftArrow.addEventListener("click", function () {
+  if (themeSelection) {
+    translateMultiplier = 100 * (currentTheme + 1);
+    changeThemeLeft();
+    themeButton.textContent = `Theme: ${
+      document.querySelector(`.theme__name${currentTheme}`).textContent
+    }`;
+  }
+});
+
+rightArrow.addEventListener("click", function () {
+  if (themeSelection) {
+    translateMultiplier = 100 * (currentTheme + 1);
+    changeThemeRight();
+    themeButton.textContent = `Theme: ${
+      document.querySelector(`.theme__name${currentTheme}`).textContent
+    }`;
+  }
+});
+
+mainContainer.addEventListener("click", function () {
+  if (mainContainerClick) {
+    inputTextID.disabled = false;
+    inputText.focus();
+    console.log(`ENTER`, themeSelection);
+    // e.preventDefault();
+    mainContainer.style.overflow = "hidden";
+    toggleAnimation(mainContainer, "animation__shrink", false);
+    toggleAnimation(mainContainer, "animation__expand", false);
+    toggleAnimation(mainContainer, "animation__expand", true);
+    console.log(`INPUTTEXT`, inputTextID.enabled);
+    themeSelection = false;
+    mainContainerClick = false;
   }
 });
 
